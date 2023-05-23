@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LOGIN PIRELLI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <style>
+        .form-control,
+        .form-control:focus,
+        .form-control:hover {
+            /* border: 0; */
+            outline: none;
+            /* box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25); */
+            box-shadow: none;
+            /* border-radius: var(--bs-border-radius); */
+            border-radius: 0;
+            padding: 7px;
+        }
+
+
+        .text-footer {
+            color: black;
+            /* top: 200px; */
+            bottom: 0;
+            margin-top: 100px;
+        }
+
+        @media (max-width: 576px) {
+            .text-footer {
+                color: black;
+                /* bottom: 0;
+                top: 0; */
+                top: 150px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .text-footer {
+                color: white;
+                /* top: 0;
+                bottom: 0; */
+            }
+
+        }
+
+        #form-ldap,
+        #form-login {
+            opacity: 1;
+            /* transition: opacity 0.5s linear; */
+            transition: opacity 2s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 d-none d-lg-block p-0">
+                <img class="w-100 h-100" style="min-height: 100vh;" src="bg.jpg" alt="">
+            </div>
+            <div class="col-md-4 p-5">
+                <form action="" id="form-login" class="needs-validation" method="post" novalidate>
+                    <p class="fs-4">Pirelli Sign-In Page</p>
+
+                    <p class="mt-5 mb-4">Sign in with your organizational account</p>
+
+                    <div class="mb-2">
+                        <input type="text" class="form-control" required name="username" id="username"
+                            placeholder="Username Account">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input username
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <input type="password" class="form-control" required name="password" id="password"
+                            placeholder="Password Account">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input password
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" id="submit" class="btn btn-primary  btn-sm rounded-0 px-4">Sign
+                            In</button>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="#" class="text-decoration-none " id="ldap">Sign in using LDAP Windows</a>
+                    </div>
+
+                </form>
+
+                <form action="" id="form-ldap" class="d-none needs-validation" method="post" novalidate>
+                    <p class="fs-4">Pirelli Sign-In Page</p>
+
+                    <p class="mt-5 mb-4">Sign in with credential windows</p>
+
+                    <div class="mb-2">
+                        <input type="text" class="form-control" required name="username" id="username"
+                            placeholder="Username Windows">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input username
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <input type="password" class="form-control" required name="password" id="password"
+                            placeholder="Password Windows">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please input password
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" id="submit" class="btn btn-warning  btn-sm rounded-0 px-4">Sign
+                            In</button>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="#" class="text-decoration-none " id="login">Sign in using normaly login</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="position-relative">
+            <small class="position-absolute bottom-0 start-0 mb-2 text-footer">© 2023 EVOLUZIONE TYRES
+            </small>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
+
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+
+            const yearCreated = 2020;
+            const d = new Date();
+            let year = d.getFullYear();
+            var company = ' EVOLUZIONE TYRES'
+            var footer = (year == yearCreated) ? '© ' + year + company : '© ' + yearCreated + '-' + year + company;
+            document.getElementsByClassName('text-footer')[0].innerHTML = footer;
+
+            document.getElementById('ldap').addEventListener('click', function () {
+                // alert('Coming Soon Feature');
+                document.getElementById('form-ldap').classList.remove('d-none');
+                document.getElementById('form-login').classList.add('d-none');
+            })
+
+            document.getElementById('login').addEventListener('click', function () {
+                // alert('Coming Soon Feature');
+                document.getElementById('form-ldap').classList.add('d-none');
+                document.getElementById('form-login').classList.remove('d-none');
+            })
+        })()
+    </script>
+</body>
+
+</html>
